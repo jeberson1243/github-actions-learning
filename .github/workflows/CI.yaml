@@ -1,9 +1,34 @@
-name:  CI
-on:  
-  push
+name: GitHub Actions Architecture
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  hello:
-    runs-on:  ubuntu-latest
-    steps:  
-      -  name: say-hello
-         run:  echo "Hello from github" 
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Step 1 - Checkout
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Show runner
+        run: |
+          echo "Hello from GitHub Actions"
+          echo "Runner information:"
+          uname -a
+
+      - name: Step 3 - Show current directory
+        run: pwd
+
+      - name: Step 4 - Show files
+        run: ls -la
+
+      - name: Step 5 - Show Git version
+        run: git --version
+
+      - name: Step 6 - Finish
+        run: echo "Workflow completed successfully"
